@@ -1,2 +1,2 @@
 # SAMsTOOL
-Common Feratures
+This repository holds all common features which are frequently used.
