@@ -1,6 +1,5 @@
 package intialStuff;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
@@ -30,7 +29,7 @@ public class CommandlineParser {
 	/**
 	 * Clear the parameter map
 	 */
-	private void resetParameterMap(){
+	public void resetParameterMap(){
 		this.argumentMap = new HashMap<String, Object>();
 	}
 	
@@ -38,7 +37,7 @@ public class CommandlineParser {
 	 * Add argument classifier into argument map
 	 * @param argAbbreviations String[] of argument abbreviations
 	 */
-	private void addExpectedArgument(String[] argAbbreviations){
+	public void addExpectedArgument(String[] argAbbreviations){
 		for (int i = 0; i < argAbbreviations.length; i++) {
 			addExpectedArgument(argAbbreviations[i]);
 		}
@@ -48,7 +47,7 @@ public class CommandlineParser {
 	 * Add argument classifier into argument map
 	 * @param argAbbreviation String argument abbreviation
 	 */
-	private void addExpectedArgument(String argAbbreviation){
+	public void addExpectedArgument(String argAbbreviation){
 		if(!argumentMap.containsKey(argAbbreviation)){
 			argumentMap.put(argAbbreviation, null);
 			DebugMessageFactory.printNormalDebugMessage(debugMode, "Added "+argAbbreviation+" to map");
@@ -61,7 +60,7 @@ public class CommandlineParser {
 	 * Traverse the original argument map and put respective arguments into map
 	 * @param argumentList String[] of original arguments
 	 */
-	private void extractArguments(String[] argumentList){
+	public void extractArguments(String[] argumentList){
 		for (int i = 0; i < argumentList.length; i+=2) {
 			if(argumentMap.containsKey(argumentList[i])){
 				argumentMap.put(argumentList[i], argumentList[i+1]);
@@ -72,7 +71,7 @@ public class CommandlineParser {
 	/**
 	 * Print the argument map
 	 */
-	private void printMap(){
+	public void printMap(){
 		System.out.println("MAP SIZE: "+argumentMap.size());
 		for(Entry<String, Object> entry : argumentMap.entrySet()){
 			System.out.println("[  KEY  ]"+entry.getKey());
@@ -84,8 +83,16 @@ public class CommandlineParser {
 	 * Get argument map
 	 * @return argumentMap HashMap<String, Object>
 	 */
-	private HashMap<String, Object> getArgumentMap(){
+	public HashMap<String, Object> getArgumentMap(){
 		return this.argumentMap;
+	}
+	
+	public void setDebugMode(boolean debugMode){
+		this.debugMode = debugMode;
+	}
+	
+	public boolean isDebugMode(){
+		return this.debugMode;
 	}
 	
 }
