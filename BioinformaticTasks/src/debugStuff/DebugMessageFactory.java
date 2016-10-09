@@ -13,7 +13,10 @@ public class DebugMessageFactory {
 	 * 
 	 * @param message to be printed out
 	 */
-	public static void printNormalDebugMessage(String message){
+	public static void printNormalDebugMessage(boolean debugMode, String message){
+		if(!debugMode){
+			return;
+		}
 		System.out.println("[  "+"OK"+"   ] "+"("+DateFactory.getDateAsString()+"):\t"+message);
 	}
 	
@@ -22,7 +25,10 @@ public class DebugMessageFactory {
 	 * 
 	 * @param message to be printed out
 	 */
-	public static void printErrorDebugMessage(String message){
+	public static void printErrorDebugMessage(boolean debugMode, String message){
+		if(!debugMode){
+			return;
+		}
 		System.out.println("[ "+"ERROR"+" ] "+"("+DateFactory.getDateAsString()+"):\t"+message);
 	}
 	
