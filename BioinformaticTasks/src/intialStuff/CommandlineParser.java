@@ -27,6 +27,25 @@ public class CommandlineParser {
 	}
 	
 	/**
+	 * Method containing all needed methods. Used to parse commandline
+	 * @param expectedArguments
+	 * @param arguments
+	 * @param exitIfArgumentIsMissing
+	 * @return HashMap<String, Object> containing argument specifier and value
+	 */
+	public HashMap<String, Object> parseCommandline(String[] expectedArguments, String[] arguments, boolean exitIfArgumentIsMissing){
+		resetParameterMap();
+		addExpectedArgument(expectedArguments);
+		extractArguments(arguments);
+		
+		if(exitIfArgumentIsMissing && checkForMissingArguments()){
+			DebugMessageFactory.printExitDebugMessage(true, "Missing argument(s).");
+			return null;
+		}
+		return getArgumentMap();
+	}
+	
+	/**
 	 * Clear the parameter map
 	 */
 	public void resetParameterMap(){
@@ -69,6 +88,21 @@ public class CommandlineParser {
 	}
 	
 	/**
+	 * Check if all expected arguments were received
+	 * @return false if an argument is missing
+	 */
+	public boolean checkForMissingArguments(){
+		boolean returnValue = false;
+		for(Entry<String, Object> entry : argumentMap.entrySet()){
+			if(entry.getValue() == null){
+				DebugMessageFactory.printInfoDebugMessage(true, "Missing argument for: "+entry.getKey());
+				returnValue = true;
+			}
+		}
+		return returnValue;
+	}
+	
+	/**
 	 * Print the argument map
 	 */
 	public void printMap(){
@@ -87,10 +121,18 @@ public class CommandlineParser {
 		return this.argumentMap;
 	}
 	
+	/**
+	 * Set debugmode
+	 * @param debugMode
+	 */
 	public void setDebugMode(boolean debugMode){
 		this.debugMode = debugMode;
 	}
 	
+	/**
+	 * Get debugmode
+	 * @return boolean if debugmode is enabled
+	 */
 	public boolean isDebugMode(){
 		return this.debugMode;
 	}
