@@ -23,14 +23,4 @@ public class DateFactory {
 		
 		return dateFormat.format(cal.getTime());
 	}
-	
-	
-	
-	
-	
-	public static void main(String[] args) {
-		
-		
-		
-	}
 }
