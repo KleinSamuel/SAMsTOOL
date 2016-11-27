@@ -19,10 +19,6 @@ public class BarPlot {
 	public Object[] yAxis;
 	public Object[] xAxis;
 	
-	public static String getFlotrLine(){
-		return "<script src=\"js/Flotr2-master/flotr2.min.js\"></script>";
-	}
-	
 	public String createBarplotJS(){
 		String out = "";
 		
@@ -43,7 +39,6 @@ public class BarPlot {
 		out += "[["+(yAxis.length-1)+","+yAxis[(yAxis.length-1)]+"]]";
 		out += "];\n\n";
 		
-		out += "\t\twindow.onload = function() {";
 		out += "Flotr.draw(document.getElementById(\""+chartID+"\"), yaxis, {\n";
 		
 		out += "\t\t\ttitle: \""+title+"\",\n";
@@ -71,7 +66,7 @@ public class BarPlot {
 		out += "\t\t\t\thorizontalLines: "+showHorizontalLines+",\n";
 		out += "\t\t\t\tverticalLines: "+showVerticalLines+"\n\t\t\t}\n";
 		
-		out += "\t\t\t});\n\t\t};\n\t</script>\n";
+		out += "\t\t\t});\n\t</script>\n";
 		return out;
 	}
 
