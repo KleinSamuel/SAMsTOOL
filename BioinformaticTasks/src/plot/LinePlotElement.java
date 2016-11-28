@@ -9,7 +9,7 @@ import javafx.util.Pair;
  * 
  * @author Samuel Klein
  */
-public class Line {
+public class LinePlotElement {
 
 	private String label = "Another Nameless Line";
 	private Vector<Pair<Object, Object>> data;
@@ -17,7 +17,7 @@ public class Line {
 	private int lineWidth = 1;
 	private int shadowSize = 0;
 	
-	public Line setLabel(String s){
+	public LinePlotElement setLabel(String s){
 		this.label = s;
 		return this;
 	}
@@ -26,7 +26,7 @@ public class Line {
 		return this.label;
 	}
 	
-	public Line setData(Vector<Pair<Object, Object>> data){
+	public LinePlotElement setData(Vector<Pair<Object, Object>> data){
 		this.data = data;
 		return this;
 	}
@@ -35,7 +35,7 @@ public class Line {
 		return this.data;
 	}
 	
-	public Line setColor(String hexCode){
+	public LinePlotElement setColor(String hexCode){
 		this.colorHexCode = hexCode;
 		return this;
 	}
@@ -44,7 +44,7 @@ public class Line {
 		return this.colorHexCode;
 	}
 	
-	public Line setLineWidth(int w){
+	public LinePlotElement setLineWidth(int w){
 		this.lineWidth = w;
 		return this;
 	}
@@ -53,7 +53,7 @@ public class Line {
 		return this.lineWidth;
 	}
 	
-	public Line setShadow(boolean flag){
+	public LinePlotElement setShadow(boolean flag){
 		this.shadowSize = (flag) ? 1 : 0;
 		return this;
 	}

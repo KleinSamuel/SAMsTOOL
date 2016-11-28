@@ -20,7 +20,7 @@ public class LinePlot {
 	public boolean showVerticalLines = false;
 	public boolean showHorizontalLines = false;
 	
-	public ArrayList<Line> lines = new ArrayList<>();
+	public ArrayList<LinePlotElement> lines = new ArrayList<>();
 	
 	public String createBarplotJS(){
 		
@@ -32,7 +32,7 @@ public class LinePlot {
 		out += "\t<script>\n";
 		
 		int cnt = 0;
-		for(Line l : lines){
+		for(LinePlotElement l : lines){
 			lineNamesInternal[cnt] = String.valueOf(cnt);
 			
 			out += "\t\tvar "+("a"+String.valueOf(cnt))+" = [";
@@ -50,7 +50,7 @@ public class LinePlot {
 		out += "\t\tFlotr.draw(document.getElementById(\""+chartID+"\"), \n\t\t\t[\n";
 		
 		for (int i = 0; i < lineNamesInternal.length; i++) {
-			Line l = lines.get(i);
+			LinePlotElement l = lines.get(i);
 			String name = lineNamesInternal[i];
 			out += "\t\t\t\t{\n";
 			out += "\t\t\t\t\tdata: a"+name+",\n";
@@ -93,7 +93,7 @@ public class LinePlot {
 		Vector<Pair<Object, Object>> v = new Vector<>();
 		v.add(new Pair<Object, Object>(1, 1));
 		
-		Line l1 = new Line().setData(v);
+		LinePlotElement l1 = new LinePlotElement().setData(v);
 		
 		LinePlot lp = new LinePlot();
 		lp.lines.add(l1);

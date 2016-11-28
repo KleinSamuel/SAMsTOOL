@@ -9,7 +9,9 @@ import java.util.Vector;
 import javafx.util.Pair;
 import plot.BarPlot;
 import plot.JavascriptPlot;
-import plot.Line;
+import plot.LinePlotElement;
+import plot.RadarPlot;
+import plot.RadarPlotElement;
 import plot.LinePlot;
 
 /**
@@ -44,11 +46,11 @@ public class HTMLFactory {
 			v3.add(new Pair<Object, Object>(i, i*3));
 		}
 		
-		Line l1 = new Line().setData(v1).setLabel("First Line");
-		Line l2 = new Line().setData(v2).setLabel("Second Line");
-		Line l3 = new Line().setData(v3).setLabel("Third Line");
+		LinePlotElement l1 = new LinePlotElement().setData(v1).setLabel("First Line");
+		LinePlotElement l2 = new LinePlotElement().setData(v2).setLabel("Second Line");
+		LinePlotElement l3 = new LinePlotElement().setData(v3).setLabel("Third Line");
 		
-		ArrayList<Line> list = new ArrayList<>();
+		ArrayList<LinePlotElement> list = new ArrayList<>();
 		list.add(l1);
 		list.add(l2);
 		list.add(l3);
@@ -66,11 +68,43 @@ public class HTMLFactory {
 		lp.minX = 0;
 		lp.maxX = 200;
 		
+		ArrayList<String> labs = new ArrayList<>();
+		labs.add("one");
+		labs.add("two");
+		labs.add("three");
+		labs.add("four");
+		labs.add("five");
+		labs.add("six");
+		
+		RadarPlotElement r1 = new RadarPlotElement("FIRST");
+		RadarPlotElement r2 = new RadarPlotElement("SECOND");
+		RadarPlotElement r3 = new RadarPlotElement("THIRD");
+		for (int i = 0; i < labs.size(); i++) {
+			r1.addData((i+1)*5.0);
+			r2.addData((i+1)*10.0);
+			r3.addData((i+1)*15.0);
+		}
+		
+		ArrayList<RadarPlotElement> elems = new ArrayList<>();
+		elems.add(r1);
+		elems.add(r2);
+		elems.add(r3);
+		
+		RadarPlot rp = new RadarPlot();
+		rp.chartID = "radarChart";
+		rp.height = 500;
+		rp.width = 500;
+		rp.showHorizontalLines = false;
+		rp.showVerticalLines = false;
+		rp.dataList = labs;
+		rp.elements = elems;
+		
 		HTML_File f = new HTML_File("FIRST PLOTS");
 		f.addCodeToBody(JavascriptPlot.getFlotrLine());
 		
 		f.addCodeToBody(bp.createBarplotJS());
 		f.addCodeToBody(lp.createBarplotJS());
+		f.addCodeToBody(rp.createBarplotJS());
 		
 		f.addEndTags();
 		
@@ -87,4 +121,8 @@ public class HTMLFactory {
 		
 	}
 
+	public static void main(String[] args) {
+		writeHtmlFile("/home/sam/Desktop/HTML/ChartTests/testSec.html");
+	}
+	
 }
