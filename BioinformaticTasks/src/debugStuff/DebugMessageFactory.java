@@ -57,4 +57,16 @@ public class DebugMessageFactory {
 		System.out.println("[ "+"EXIT"+"  ] "+"("+DateFactory.getDateAsString()+"):\t"+message);
 	}
 	
+	/**
+	 * Print out the current RAM usage
+	 * 
+	 * @param debugMode
+	 */
+	public static void printCurrentRamUsage(boolean debugMode){
+		if(!debugMode){
+			return;
+		}
+		System.out.println("[ "+"RAM"+"  ] "+"("+DateFactory.getDateAsString()+"):\t"+(Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())+"/"+Runtime.getRuntime().totalMemory());
+	}
+	
 }
