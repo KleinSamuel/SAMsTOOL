@@ -10,10 +10,10 @@ import javafx.util.Pair;
  * @author Samuel Klein
  */
 public class NeedlemanWunsch {
-
-	public final int MATCH = 1;
-	public final int MISMATCH = 0;
-	public final int GAPPENALTY = -1;
+ 
+	public int MATCH = 0;
+	public int MISMATCH = 1;
+	public int GAPPENALTY = 1;
 	
 	private String a;
 	private String b;
@@ -57,7 +57,8 @@ public class NeedlemanWunsch {
 				leftScore = matrix[i][j-1].getValue()+GAPPENALTY;
 				upLeftScore = (b.charAt(i-1) == a.charAt(j-1)) ? matrix[i-1][j-1].getValue()+MATCH : matrix[i-1][j-1].getValue()+MISMATCH;
 				
-				int max = Math.max(upScore, Math.max(leftScore, upLeftScore));
+//				int max = Math.max(upScore, Math.max(leftScore, upLeftScore));
+				int max = Math.min(upScore, Math.min(leftScore, upLeftScore));
 				
 				if(max == upScore){
 					matrix[i][j].setUp(true);
@@ -94,13 +95,13 @@ public class NeedlemanWunsch {
 			return;
 		}else{
 			if(matrix[i][j].isUPLEFT()){
-				recursiveTraceback(i-1, j-1, first += a.charAt(j-1), second += b.charAt(i-1), list);
+				recursiveTraceback(i-1, j-1, first + a.charAt(j-1), second + b.charAt(i-1), list);
 			}
 			if(matrix[i][j].isUP()){
-				recursiveTraceback(i-1, j, first += "_", second += b.charAt(i-1), list);
+				recursiveTraceback(i-1, j, first + "_", second + b.charAt(i-1), list);
 			}
 			if(matrix[i][j].isLEFT()){
-				recursiveTraceback(i, j-1, first += a.charAt(j-1), second += "_", list);
+				recursiveTraceback(i, j-1, first + a.charAt(j-1), second + "_", list);
 			}
 		}
 	}
@@ -134,6 +135,15 @@ public class NeedlemanWunsch {
 	public void printMatrix(){
 		for (int i = 0; i < this.matrix.length; i++) {
 			for (int j = 0; j < this.matrix[i].length; j++) {
+//				if(matrix[i][j].isLEFT()){
+//					System.out.print("←");
+//				}
+//				if(matrix[i][j].isUPLEFT()){
+//					System.out.print("↖");
+//				}
+//				if(matrix[i][j].isUP()){
+//					System.out.print("↑");
+//				}
 				System.out.print(this.matrix[i][j].getValue()+"\t");
 			}
 			System.out.println();
@@ -154,7 +164,7 @@ public class NeedlemanWunsch {
 	public static void main(String[] args) {
 		NeedlemanWunsch nw = new NeedlemanWunsch();
 		nw.getAlignments("BIERGARTEN", "STERNWARTE");
+		nw.printMatrix();
 		nw.printAlignments();
-		System.out.println(nw.getDistanceScore());
 	}
 }
