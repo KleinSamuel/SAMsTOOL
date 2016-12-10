@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import javafx.util.Pair;
-import plot.BarPlot;
-import plot.JavascriptPlot;
-import plot.LinePlotElement;
-import plot.RadarPlot;
-import plot.RadarPlotElement;
-import plot.LinePlot;
+import plot_javascript.BarPlot;
+import plot_javascript.JavascriptPlot;
+import plot_javascript.LinePlot;
+import plot_javascript.LinePlotElement;
+import plot_javascript.RadarPlot;
+import plot_javascript.RadarPlotElement;
 
 /**
  * Create a HTML file.

@@ -1,4 +1,4 @@
-package plot;
+package plot_javascript;
 
 public class BarPlot {
 

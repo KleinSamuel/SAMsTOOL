@@ -1,4 +1,4 @@
-package plot;
+package plot_javascript;
 
 import java.util.ArrayList;
 
